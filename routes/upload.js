@@ -54,6 +54,7 @@ const uploadLocally = multer({ storage: storage })
 // only for images (with limit of 10 images)
 
 router.post('', uploadLocally.array('files', 10), function (req, res) {
+  // don't have aws credentials so uploading files locally...
   urls = req.files.map(a => '/uploads/' + a.filename);
   res.json({ message: 'Images uploaded successfully!', urls });
 });

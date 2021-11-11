@@ -1,0 +1,21 @@
+{
+  "development": {
+    "dialect": "postgres",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "mTest",
+    "host": "127.0.0.1"
+  },
+  "test": {
+    
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}

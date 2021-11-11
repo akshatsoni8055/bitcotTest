@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div class="page-header text-center">
+    <h1><span class="fa fa-anchor"></span> <%= title%> </h1>
+  </div>
+
+  <div class="container">
+
+    <% if (user) { %>
+
+      <div class="jumbotron text-center" style="background-color: wheat;">
+        <img src="<%= user.pic %>" width="200" height="200" alt="avatar">
+      </div>
+      <div class="jumbotron" style="background-color: wheat;">
+        <form>
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">ID</span>
+              </div>
+              <input type="text" class="form-control" value="<%= user.uid %>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+              </div>
+              <input type="text" class="form-control" value="<%= user.displayname %>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputEmail4">Email</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Email" value="<%= user.email%>"
+                readonly>
+            </div>
+          </div>
+          <a type="button" href="/auth/logout" class="btn btn-block btn-danger">Logout</a>
+        </form>
+      </div>
+
+      <% } else { %>
+        <div class="jumbotron" style="background-color: wheat;">
+          <a href="/auth/google" type="button" class="btn btn-block btn-danger">Google</a>
+          <a href="/auth/linkedin" type="button" class="btn btn-block btn-info">LinkedIn</a>
+          <a href="/auth/facebook" type="button" class="btn btn-block btn-primary">Facebook</a>
+        </div>
+      <% } %>
+
+      <div class="jumbotron" style="background-color: wheat;">
+        <h2>File Upload</h2>
+        <div class="form-group">
+          <label>Select Images (choose one or many)</label>
+          <input type="file" id="file" class="form-control" name="files" accept="image/*" multiple="multiple" required />
+      </div>
+  
+      <input class="btn btn-block btn-primary" type="button" id="but_upload" value="Upload">
+      </div>
+
+      <div id="data" class="jumbotron container" style="background-color: wheat; visibility:hidden ">
+        <div class="input-group mb-3s">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Url :</span>
+            </div>
+        </div>
+      </div>
+
+  </div>
+</div>

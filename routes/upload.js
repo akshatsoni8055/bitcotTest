@@ -16,13 +16,13 @@ const uploadS3 = multer({
 
   storage: multerS3({
     s3: new aws.S3(),
-    bucket: 'images',
+    bucket: 'akshatsoni',
     acl: 'public-read', // public read access
     metadata: function (req, file, cb) {
       cb(null, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString())
+      cb(null, Date.now().toString() + '-' + file.originalname)
     }
   }),
 
@@ -53,9 +53,10 @@ const uploadLocally = multer({ storage: storage })
 
 // only for images (with limit of 10 images)
 
-router.post('', uploadLocally.array('files', 10), function (req, res) {
+router.post('', uploadS3.array('files', 10), function (req, res) {
   // don't have aws credentials so uploading files locally...
-  urls = req.files.map(a => '/uploads/' + a.filename);
+  console.log(req.files)
+  const urls = req.files.map(a => a.location);
   res.json({ message: 'Images uploaded successfully!', urls });
 });
 

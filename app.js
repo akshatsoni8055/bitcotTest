@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var logger = require('morgan');
 var passport = require('passport');
-var MongoStore = require('connect-mongo');
+// var MongoStore = require('connect-mongo');
 var expressLayouts = require('express-ejs-layouts');
 var app = express();
 
-var { indexRouter, authRouter, uploadRouter } = require('./routes');
+var { indexRouter, uploadRouter } = require('./routes');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,21 +27,21 @@ app.use(session({
   secret: process.env.secret,
   saveUninitialized: true,
   resave: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.DATABASE_URI,
-    mongoOptions: {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-    collectionName: 'sessions'
-  })
+  // store: MongoStore.create({
+  //   mongoUrl: process.env.DATABASE_URI,
+  //   mongoOptions: {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   },
+  //   collectionName: 'sessions'
+  // })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 // handling routes
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
+// app.use('/auth', authRouter);
 app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler

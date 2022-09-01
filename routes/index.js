@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var authRouter = require('./auth');
+// var authRouter = require('./auth');
 var uploadRouter = require('./upload');
 
 /* GET home page. */
@@ -10,4 +10,4 @@ router.get('/', function (req, res, next) {
   res.render('pages/index', { title, layout: 'layouts/main', user });
 });
 
-module.exports = { indexRouter: router, authRouter, uploadRouter };
+module.exports = { indexRouter: router, uploadRouter };
